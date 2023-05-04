@@ -1,4 +1,4 @@
-package orchad.model;
+package orchard.model;
 
 public class Tree {
 	
