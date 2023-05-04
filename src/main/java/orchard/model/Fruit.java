@@ -1,19 +1,19 @@
 package orchard.model;
 
 public enum Fruit {
-	    CHERRY("urlCherry"),
-	    PEAR("urlPear"),
-	    PLUM("urlPlum"),
-	    APPLE("urlApple");
+	    CHERRY("Cherry"),
+	    PEAR("Pear"),
+	    PLUM("Plum"),
+	    APPLE("Apple");
 	    
-	    private String fruitUrl;
+	    private String fruit;
 
-	    private Fruit(String fruitUrl) {
-	        this.fruitUrl = fruitUrl;
+	    private Fruit(String fruit) {
+	        this.fruit = fruit;
 	    }
 	    
-	    public String getFruitUrl() {
-	        return this.fruitUrl;
+	    public String getFruit() {
+	        return this.fruit;
 	    }
 	   
 }
