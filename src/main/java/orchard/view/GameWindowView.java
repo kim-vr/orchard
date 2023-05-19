@@ -17,11 +17,11 @@ import orchard.model.Die;
 public class GameWindowView {
     private final Button startGameBtn = new Button("Commencer la partie");
 
-    public BorderPane borderPaneBottomCreation(Die die, DieWindowView dieFX) {
+    public BorderPane borderPaneBottomCreation(Die die) {
         BorderPane bp = new BorderPane();
-        ImageView imageviewCurrentFace = new ImageView(dieFX.getImageOfCurrentFace(die));
+        //ImageView imageviewCurrentFace = new ImageView(dieFX.getImageOfCurrentFace(die));
         bp.setPrefSize(910, 90);
-        bp.setRight(imageviewCurrentFace);
+        //bp.setRight(imageviewCurrentFace);
         bp.setCenter(this.startGameBtn);
         bp.setPadding(new Insets(10 ,0 ,0 ,0));
         
@@ -35,13 +35,13 @@ public class GameWindowView {
                   BackgroundSize.DEFAULT);
     }
     
-    public Scene getGameScene(DieWindowView dieFX){
+    public Scene getGameScene(){
         BackgroundImage background = getGameBackground(new Image("/gameBackground.png", 910, 682, false, true));
         
         BorderPane root = new BorderPane();
         
         Board boardModel = new Board();
-        root.setBottom(borderPaneBottomCreation(boardModel.die(), dieFX));
+        root.setBottom(borderPaneBottomCreation(boardModel.die()));
         root.setBackground(new Background(background));
         root.setCenter(BoardView.gridPaneTreesCreation(boardModel.trees())); 
         return new Scene(root, 910, 682);
