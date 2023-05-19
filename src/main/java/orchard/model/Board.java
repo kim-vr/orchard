@@ -36,6 +36,15 @@ public class Board {
         this.trees.add(new Tree(Fruit.APPLE));
     }
     
+    public Tree getTree(Fruit fruit) {
+		for (Tree tree : this.trees) {
+			if (tree.getAssociatedFruit() == fruit) {
+				return tree;
+			}
+		}
+		return trees.get(1);
+	}
+    
     public void addARound() {
         this.numberOfRounds += 1;
     }
