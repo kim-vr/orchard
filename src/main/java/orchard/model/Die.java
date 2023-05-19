@@ -6,23 +6,20 @@ import java.util.Random;
 
 public class Die {
 	private DieFace currentFace;
-	private final List<DieFace> faces;
+	private List<DieFace> faces;
 	
 	public Die() {
+		facesInitialisation();
 		this.currentFace = DieFace.RED;
-		this.faces = facesInitialisation();
+		this.faces = faces();
 	}
 	
-	public List<DieFace> facesInitialisation() {
-		List<DieFace> faces;
-		faces = new ArrayList<>(5);
-		faces.add(DieFace.RED);
-		faces.add(DieFace.YELLOW);
-		faces.add(DieFace.BLUE);
-		faces.add(DieFace.GREEN);
-		/*faces.add(DieFace.RAVEN);*/
-		
-		return faces;
+	public void facesInitialisation() {
+		this.faces = new ArrayList<>(4);
+		this.faces.add(DieFace.RED);
+		this.faces.add(DieFace.YELLOW);
+		this.faces.add(DieFace.BLUE);
+		this.faces.add(DieFace.GREEN);
 	}
 	
 	public DieFace currentFace() {
@@ -37,8 +34,8 @@ public class Die {
 		this.currentFace = face;
 	}
 	
-	public DieFace rollDie(List<DieFace> faces) {
+	public void rollDie(List<DieFace> faces) {
 		Random random = new Random();
-		return faces.get(random.nextInt(faces.size()));
+		this.currentFace = this.faces.get(random.nextInt(this.faces.size()));
 	}
 }
