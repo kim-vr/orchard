@@ -34,7 +34,7 @@ public class Die {
 		this.currentFace = face;
 	}
 	
-	public void rollDie(List<DieFace> faces) {
+	public void rollDie() {
 		Random random = new Random();
 		this.currentFace = this.faces.get(random.nextInt(this.faces.size()));
 	}
