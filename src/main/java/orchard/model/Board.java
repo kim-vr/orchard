@@ -9,11 +9,12 @@ public class Board {
     private int numberOfRounds;
     
     public Board() {
-    	this.treesInitialisation();
+        treesInitialisation();
         this.trees = trees();
         this.die = new Die();
         this.numberOfRounds = 0;
     }
+    
     
     public List<Tree> trees(){
         return this.trees;
@@ -33,6 +34,25 @@ public class Board {
         this.trees.add(new Tree(Fruit.PEAR));
         this.trees.add(new Tree(Fruit.PLUM));
         this.trees.add(new Tree(Fruit.APPLE));
+    }
+    
+    public void addARound() {
+        this.numberOfRounds += 1;
+    }
+    
+    public void setDie(DieFace face) {
+        this.die.setCurrentFace(face);
+    }
+    
+
+    public boolean allTreesEmpty() {
+        boolean treesEmpty = true;
+        for(Tree tree : trees) {
+            if (!tree.treeIsEmpty()) {
+                treesEmpty = false;
+            }
+        }
+        return treesEmpty;
     }
     
 }
