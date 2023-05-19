@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import orchard.model.Board;
 import orchard.model.Die;
 import orchard.model.DieFace;
 
@@ -14,6 +15,15 @@ public class DieWindowView {
 	private GridPane gridPaneDie;
 	private Image imageCurrentFace;
 	private Button rollTheDieBtn;
+	
+	public DieWindowView(Board board) {
+		setGridPaneDie(board.die());
+		setImageOfCurrentFace(board.die());
+		this.gridPaneDie = getGridPaneDie();
+		this.imageCurrentFace = getImageOfCurrentFace(board.die());
+		this.rollTheDieBtn = getButton();
+		this.dieWindow = getDieWindow();
+	}
 	
 	public Button getButton() {
 		return this.rollTheDieBtn;
