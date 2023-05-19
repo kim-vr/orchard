@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import orchard.model.Board;
 import orchard.view.DieWindowView;
+import orchard.view.GameWindowView;
 
 public class GameController {
     
@@ -27,6 +28,25 @@ public class GameController {
                 dieFX.setImageOfCurrentFace(board.die());
             }
         });
+    }
+    
+    public void startGame(Board board, DieWindowView dieFX) {
+        GameWindowView gameView = new GameWindowView();
+        Button startBtn = gameView.getStartGameBtn();
+        startBtn.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event) {
+                game(board, dieFX);
+            }
+        });
+    }
+    
+    public void gameOver(Board board) {
+        if(board.allTreesEmpty()) {
+            System.out.println("Jeu gagné !");
+            //TODO
+        }
     }
 
 }
