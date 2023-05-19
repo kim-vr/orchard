@@ -2,7 +2,12 @@ package orchard.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import orchard.model.Die;
 
@@ -19,6 +24,12 @@ public class GameWindowView {
         
         return bp;
         
+    }
+    
+    public static BackgroundImage getGameBackground(Image image) {
+        return new BackgroundImage(image,
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                  BackgroundSize.DEFAULT);
     }
     
 }
