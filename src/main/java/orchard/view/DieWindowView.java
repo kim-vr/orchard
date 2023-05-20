@@ -11,26 +11,22 @@ import orchard.model.Die;
 import orchard.model.DieFace;
 
 public class DieWindowView {
-	private Scene dieWindow;
 	private GridPane gridPaneDie;
 	private Image imageCurrentFace;
-	private Button rollTheDieBtn;
+	private final Button rollTheDieBtn = new Button("Roll the die !");
+	private Scene dieScene;
 	
 	public DieWindowView(Board board) {
-		setGridPaneDie(board.die());
 		setImageOfCurrentFace(board.die());
-		this.gridPaneDie = getGridPaneDie();
-		this.imageCurrentFace = getImageOfCurrentFace(board.die());
-		this.rollTheDieBtn = getButton();
-		this.dieWindow = getDieWindow();
+		setGridPaneDie();
+		setDieScene();
 	}
 	
 	public Button getButton() {
 		return this.rollTheDieBtn;
 	}
 	
-	public Image getImageOfCurrentFace(Die die) {
-		setImageOfCurrentFace(die);
+	public Image getImageOfCurrentFace() {
 		return this.imageCurrentFace;
 	}
 	
@@ -48,10 +44,13 @@ public class DieWindowView {
 			this.imageCurrentFace = new Image("/blueDie.png", 100, 100, true, true);
 		}
 	}
-	public void setGridPaneDie(Die die) {
+	public void updateGridPaneImage() {
+		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
+	}
+	
+	public void setGridPaneDie() {
 		this.gridPaneDie = new GridPane();
-		this.rollTheDieBtn = new Button("Roll the die !");
-		this.gridPaneDie.add(new ImageView(getImageOfCurrentFace(die)), 0, 0);
+		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
 		this.gridPaneDie.add(this.rollTheDieBtn, 0, 1);
 		this.gridPaneDie.setAlignment(Pos.CENTER);
 	}
@@ -59,8 +58,13 @@ public class DieWindowView {
 		return this.gridPaneDie;
 	}
 	
-	public Scene getDieWindow() {
-		this.dieWindow = new Scene(this.gridPaneDie, 400, 400);
-		return this.dieWindow;
+	public Scene getDieScene() {
+		return this.dieScene;
 	}
+	
+	public void setDieScene() {
+		this.dieScene = new Scene(this.gridPaneDie, 400, 400);
+	}
+	
+	
 }

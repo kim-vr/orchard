@@ -1,4 +1,4 @@
-package orchard.view;
+package orchard.view.board;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

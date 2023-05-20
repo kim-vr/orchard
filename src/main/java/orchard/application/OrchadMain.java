@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import orchard.controller.GameController;
 import orchard.model.Board;
-import orchard.view.DieWindowView;
+import orchard.view.OrchardView;
 
 public class OrchadMain extends Application{
 	
@@ -12,14 +12,11 @@ public class OrchadMain extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		
 		Board board = new Board();
-		DieWindowView die = new DieWindowView(board);
-		GameController gameManagement = new GameController();
-		
-		gameManagement.game(board, die);
-        primaryStage.setTitle("orchard");
-        primaryStage.setScene(die.getDieWindow());
+        OrchardView gameView = new OrchardView(board);
+        GameController.startGame(board, gameView, primaryStage);
+        primaryStage.setScene(gameView.currentScene());
+        primaryStage.setTitle("Orchard");
         primaryStage.show();
-        
 		
 	}
 
