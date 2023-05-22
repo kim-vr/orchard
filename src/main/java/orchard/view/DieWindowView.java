@@ -15,6 +15,7 @@ public class DieWindowView {
 	private Image imageCurrentFace;
 	private final Button rollTheDieBtn = new Button("Roll the die !");
 	private Scene dieScene;
+	private final Button okBtn = new Button("ok");
 	
 	public DieWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
@@ -22,8 +23,12 @@ public class DieWindowView {
 		setDieScene();
 	}
 	
-	public Button getButton() {
+	public Button getButtonRoll() {
 		return this.rollTheDieBtn;
+	}
+	
+	public Button getButtonOk() {
+		return this.okBtn;
 	}
 	
 	public Image getImageOfCurrentFace() {
@@ -52,6 +57,8 @@ public class DieWindowView {
 		this.gridPaneDie = new GridPane();
 		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
 		this.gridPaneDie.add(this.rollTheDieBtn, 0, 1);
+		this.gridPaneDie.add(this.okBtn, 0, 1);
+		this.okBtn.setVisible(false);
 		this.gridPaneDie.setAlignment(Pos.CENTER);
 	}
 	public GridPane getGridPaneDie() {
