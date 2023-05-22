@@ -6,7 +6,7 @@ import orchard.controller.GameController;
 import orchard.model.Board;
 import orchard.view.OrchardView;
 
-public class OrchadMain extends Application{
+public class OrchardMain extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
