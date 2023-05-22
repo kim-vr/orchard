@@ -3,6 +3,7 @@ package orchard.view.board;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -21,10 +22,16 @@ public class GameWindowView {
 	private Image currentDie;
 	private BorderPane borderPaneBoard;
 	private BorderPane bottom;
+	private Label nbRoundsLabel;
 	
 	
 	public GameWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
+		
+		this.nbRoundsLabel = new Label();
+		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 0));
+		
+		setNbRoundsLabel(board);
 		borderPaneBottomCreation();
 		setBorderPane(board);
 		setGameScene();
@@ -35,9 +42,14 @@ public class GameWindowView {
 		ImageView imageviewCurrentFace = new ImageView(this.currentDie);
 		this.bottom.setPrefSize(910, 90);
 		this.bottom.setRight(imageviewCurrentFace);
+		this.bottom.setLeft(this.nbRoundsLabel);
 		this.bottom.setCenter(this.startGameBtn);
 		this.bottom.setPadding(new Insets(10 ,0 ,0 ,0));
 		
+	}
+	
+	public void setNbRoundsLabel(Board board) {
+		this.nbRoundsLabel.setText("Nombre de tours : " + board.numberOfRounds());
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
