@@ -17,7 +17,8 @@ import orchard.model.Die;
 import orchard.model.DieFace;
 
 public class GameWindowView {
-	private final Button startGameBtn = new Button("Commencer la partie");
+	private final Button startGameBtn = new Button("Start the game");
+	private final Button nextTurnBtn = new Button("Next turn");
 	private Scene boardScene;
 	private Image currentDie;
 	private BorderPane borderPaneBoard;
@@ -28,10 +29,9 @@ public class GameWindowView {
 	public GameWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
 		
-		this.nbRoundsLabel = new Label();
+		this.nbRoundsLabel = new Label("Number of rounds : 0");
 		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 0));
 		
-		setNbRoundsLabel(board);
 		borderPaneBottomCreation();
 		setBorderPane(board);
 		setGameScene();
@@ -48,8 +48,17 @@ public class GameWindowView {
 		
 	}
 	
+	public void replaceButtonByNextTurnButton() {
+		this.bottom.setCenter(nextTurnBtn);
+	}
+	
 	public void setNbRoundsLabel(Board board) {
-		this.nbRoundsLabel.setText("Nombre de tours : " + board.numberOfRounds());
+		this.nbRoundsLabel.setText("Number of rounds : " + board.numberOfRounds());
+		this.bottom.setLeft(this.nbRoundsLabel);
+	}
+	
+	public Label getNbRoundsLabel() {
+		return this.nbRoundsLabel;
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
@@ -99,6 +108,10 @@ public class GameWindowView {
 
 	public Button getStartGameBtn() {
 		return this.startGameBtn;
+	}
+	
+	public Button getNextTurnBtn() {
+		return this.nextTurnBtn;
 	}
     
 }

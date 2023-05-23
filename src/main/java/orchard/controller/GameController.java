@@ -14,8 +14,12 @@ import orchard.view.board.GameWindowView;
 public class GameController {
     
 	public static void game(Board board, OrchardView gameView, Stage stage) {
-		rollDieGame(board, gameView, stage);
-		pickFruitGame(board, gameView, stage);
+		if (gameOver(board) != true) {
+			rollDieGame(board, gameView, stage);
+			pickFruitGame(board, gameView, stage);
+		} else {
+			stage.close();
+		}
 	}
 	
 	public static void rollDieGame(Board board, OrchardView gameView, Stage stage) {
@@ -41,8 +45,11 @@ public class GameController {
 	}
 	
 	public static void pickFruitGame(Board board, OrchardView gameView, Stage stage) {
-		Button btnOk = gameView.dieView().getButtonOk();
 		GameWindowView boardWindow = gameView.boardView();
+		DieWindowView dieWindow = gameView.dieView();
+		Button btnOk = gameView.dieView().getButtonOk();
+		Button btnRollDie = gameView.dieView().getButtonRoll();
+		Button nextTurnBtn = boardWindow.getNextTurnBtn();
 		Die die = board.die();
 		Tree treeToPickFruitOn = board.getTree(die.currentFace().getAssociatedSymbol());
 		
@@ -56,25 +63,40 @@ public class GameController {
 				treeToPickFruitOn.pickAFruit();
 			}
 		});
+		
+		nextTurnBtn.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			
+			@Override
+			public void handle(MouseEvent event) {
+				btnOk.setVisible(false);
+				btnRollDie.setVisible(true);
+				stage.setScene(dieWindow.getDieScene());
+				board.addARound();
+				boardWindow.setNbRoundsLabel(board);
+			}
+		});
 	}
 	
 	public static void startGame(Board board, OrchardView gameView, Stage stage) {
-		Button startBtn = gameView.boardView().getStartGameBtn();
+		GameWindowView boardWindow = gameView.boardView();
+		Button startBtn = boardWindow.getStartGameBtn();
 		startBtn.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			
 			@Override
 			public void handle(MouseEvent event) {
 				startBtn.setVisible(false);
+				boardWindow.replaceButtonByNextTurnButton();
 				game(board, gameView, stage);
 			}
 		});
 	}
 	
-	public void gameOver(Board board) {
+	public static boolean gameOver(Board board) {
 		if(board.allTreesEmpty()) {
 			System.out.println("Jeu gagné !");
-			//TODO
+			return true;
 		}
+		return false;
 	}
 
 }

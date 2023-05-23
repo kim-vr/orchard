@@ -67,8 +67,8 @@ public class DieWindowView {
 		this.gridPaneDie.setAlignment(Pos.CENTER);
 		
 		this.okBtn.setVisible(false);
-		GridPane.setHalignment(rollTheDieBtn, HPos.CENTER);
-		GridPane.setHalignment(okBtn, HPos.CENTER);
+		GridPane.setHalignment(this.rollTheDieBtn, HPos.CENTER);
+		GridPane.setHalignment(this.okBtn, HPos.CENTER);
 	}
 	public GridPane getGridPaneDie() {
 		return this.gridPaneDie;
