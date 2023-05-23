@@ -1,5 +1,6 @@
 package orchard.view;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,15 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import orchard.model.Board;
 import orchard.model.Die;
 import orchard.model.DieFace;
-import orchard.view.board.BoardView;
+import orchard.view.board.GameWindowView;
 
 public class DieWindowView {
 	private GridPane gridPaneDie;
@@ -28,12 +25,6 @@ public class DieWindowView {
 		setImageOfCurrentFace(board.die());
 		setGridPaneDie();
 		setDieScene();
-	}
-	
-	public static BackgroundImage getDieBackground(Image image) {
-		return new BackgroundImage(image,
-		        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-		          BackgroundSize.DEFAULT);
 	}
 	
 	public Button getButtonRoll() {
@@ -68,13 +59,16 @@ public class DieWindowView {
 	
 	public void setGridPaneDie() {
 		this.gridPaneDie = new GridPane();
-		BackgroundImage background = getDieBackground(new Image("/dieBackground.png", 400, 400, false, true));
+		BackgroundImage background = GameWindowView.getGameBackground(new Image("/dieBackground.png", 910, 682, false, true));
 		this.gridPaneDie.setBackground(new Background(background));
 		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
 		this.gridPaneDie.add(this.rollTheDieBtn, 0, 1);
 		this.gridPaneDie.add(this.okBtn, 0, 1);
-		this.okBtn.setVisible(false);
 		this.gridPaneDie.setAlignment(Pos.CENTER);
+		
+		this.okBtn.setVisible(false);
+		GridPane.setHalignment(rollTheDieBtn, HPos.CENTER);
+		GridPane.setHalignment(okBtn, HPos.CENTER);
 	}
 	public GridPane getGridPaneDie() {
 		return this.gridPaneDie;
@@ -85,7 +79,7 @@ public class DieWindowView {
 	}
 	
 	public void setDieScene() {
-		this.dieScene = new Scene(this.gridPaneDie, 400, 400);
+		this.dieScene = new Scene(this.gridPaneDie, 910, 682);
 	}
 	
 	
