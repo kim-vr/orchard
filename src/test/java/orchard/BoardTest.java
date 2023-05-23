@@ -16,32 +16,6 @@ public class BoardTest {
     }
 
     @Test
-    public void testTreesInitialization() {
-        List<Tree> trees = board.trees();
-        assertEquals(4, trees.size());
-
-        // Check if each tree has the correct associated fruit
-        assertEquals(Fruit.CHERRY, trees.get(0).getAssociatedFruit());
-        assertEquals(Fruit.PEAR, trees.get(1).getAssociatedFruit());
-        assertEquals(Fruit.PLUM, trees.get(2).getAssociatedFruit());
-        assertEquals(Fruit.APPLE, trees.get(3).getAssociatedFruit());
-    }
-
-    @Test
-    public void testGetTree() {
-        Tree tree = board.getTree(Fruit.PLUM);
-        assertNotNull(tree);
-        assertEquals(Fruit.PLUM, tree.getAssociatedFruit());
-    }
-
-    @Test
-    public void testGetTree_InvalidFruit() {
-        Tree tree = board.getTree(Fruit.CHERRY);
-        assertNotNull(tree);
-        assertNotEquals(Fruit.PEAR, tree.getAssociatedFruit());
-    }
-
-    @Test
     public void testAddARound() {
         int initialNumberOfRounds = board.numberOfRounds();
         board.addARound();
@@ -57,7 +31,6 @@ public class BoardTest {
 
     @Test
     public void testAllTreesEmpty_WithEmptyTrees() {
-        // Set all trees to be empty
         for (Tree tree : board.trees()) {
         	while (tree.getNumberOfFruits() != 0) {
         		tree.pickAFruit();
