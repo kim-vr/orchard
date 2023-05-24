@@ -24,16 +24,16 @@ public class GameWindowView {
 	private BorderPane borderPaneBoard;
 	private BorderPane bottom;
 	private Label nbRoundsLabel;
+	private BoardView boardView;
 	
 	
 	public GameWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
-		
 		this.nbRoundsLabel = new Label("Number of rounds : 0");
 		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 0));
-		
+		this.boardView = new BoardView(board);
 		borderPaneBottomCreation();
-		setBorderPane(board);
+		setBorderPaneGame();
 		setGameScene();
 	}
 
@@ -50,6 +50,10 @@ public class GameWindowView {
 	
 	public void replaceButtonByNextTurnButton() {
 		this.bottom.setCenter(nextTurnBtn);
+	}
+	
+	public BoardView getBoardView() {
+		return this.boardView;
 	}
 	
 	public void setNbRoundsLabel(Board board) {
@@ -95,15 +99,13 @@ public class GameWindowView {
 		this.boardScene = new Scene(this.borderPaneBoard, 910, 682);
 	}
 	
-	public void setBorderPane(Board board){
-		BoardView treesView;
+	public void setBorderPaneGame(){
 		BackgroundImage background = getGameBackground(new Image("/gameBackground.png", 910, 682, false, true));
 		this.borderPaneBoard = new BorderPane();
-		treesView = new BoardView(board);
 		
 		this.borderPaneBoard.setBottom(this.bottom);
 		this.borderPaneBoard.setBackground(new Background(background));
-		this.borderPaneBoard.setCenter(treesView.getGridPaneTrees()); 
+		this.borderPaneBoard.setCenter(this.boardView.getGridPaneTrees()); 
 	}
 
 	public Button getStartGameBtn() {

@@ -14,19 +14,14 @@ import orchard.view.board.GameWindowView;
 public class GameController {
     
 	public static void game(Board board, OrchardView gameView, Stage stage) {
-		if (gameOver(board) != true) {
-			rollDieGame(board, gameView, stage);
-			pickFruitGame(board, gameView, stage);
-		} else {
-			stage.close();
-		}
+		rollDieGame(board, gameView, stage);
+		pickFruitGame(board, gameView, stage);
 	}
 	
 	public static void rollDieGame(Board board, OrchardView gameView, Stage stage) {
+		
 		Button btnRollDie = gameView.dieView().getButtonRoll();
 		Button btnOk = gameView.dieView().getButtonOk();
-		DieWindowView dieWindow = gameView.dieView();
-		Die die = board.die();
 		
 		stage.setScene(gameView.dieView().getDieScene());
 		
@@ -34,6 +29,8 @@ public class GameController {
 			
 			@Override
 			public void handle(MouseEvent event) {
+				DieWindowView dieWindow = gameView.dieView();
+				Die die = board.die();
 				
 				btnRollDie.setVisible(false);
 				die.rollDie();
@@ -45,21 +42,20 @@ public class GameController {
 	}
 	
 	public static void pickFruitGame(Board board, OrchardView gameView, Stage stage) {
-		GameWindowView boardWindow = gameView.boardView();
-		DieWindowView dieWindow = gameView.dieView();
 		Button btnOk = gameView.dieView().getButtonOk();
-		Button btnRollDie = gameView.dieView().getButtonRoll();
-		Button nextTurnBtn = boardWindow.getNextTurnBtn();
-		Die die = board.die();
-		Tree treeToPickFruitOn = board.getTree(die.currentFace().getAssociatedSymbol());
+		Button nextTurnBtn = gameView.boardView().getNextTurnBtn();
 		
 		btnOk.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			
 			@Override
 			public void handle(MouseEvent event) {
+				GameWindowView boardWindow = gameView.boardView();
+				Die die = board.die();
+				Tree treeToPickFruitOn = board.getTree(die.currentFace().getAssociatedSymbol());
 				boardWindow.setImageOfCurrentFace(die);
 				boardWindow.updateImage();
 				stage.setScene(boardWindow.getGameScene());
+				boardWindow.getBoardView().getTree(treeToPickFruitOn.getAssociatedFruit()).pickAFruit(treeToPickFruitOn);
 				treeToPickFruitOn.pickAFruit();
 			}
 		});
@@ -68,6 +64,10 @@ public class GameController {
 			
 			@Override
 			public void handle(MouseEvent event) {
+				Button btnRollDie = gameView.dieView().getButtonRoll();
+				DieWindowView dieWindow = gameView.dieView();
+				GameWindowView boardWindow = gameView.boardView();
+				
 				btnOk.setVisible(false);
 				btnRollDie.setVisible(true);
 				stage.setScene(dieWindow.getDieScene());
@@ -91,12 +91,10 @@ public class GameController {
 		});
 	}
 	
-	public static boolean gameOver(Board board) {
+	public static void gameOver(Board board) {
 		if(board.allTreesEmpty()) {
 			System.out.println("Jeu gagné !");
-			return true;
 		}
-		return false;
 	}
 
 }

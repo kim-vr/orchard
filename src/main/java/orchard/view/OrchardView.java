@@ -13,7 +13,6 @@ public class OrchardView {
 		this.boardView = new GameWindowView(board);
 		this.dieView = new DieWindowView(board);
 		this.currentScene = this.boardView.getGameScene();
-		//this.currentScene = this.dieView.getDieScene();
 	}
 	
 	public void setCurrentScene(Scene scene) {
