@@ -37,7 +37,7 @@ public class GameWindowView {
 		setGameScene();
 	}
 
-	public void borderPaneBottomCreation() {
+	private void borderPaneBottomCreation() {
 		this.bottom = new BorderPane();
 		ImageView imageviewCurrentFace = new ImageView(this.currentDie);
 		this.bottom.setPrefSize(910, 90);
@@ -66,18 +66,7 @@ public class GameWindowView {
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
-		if (die.currentFace() == DieFace.RED) {
-			this.currentDie = new Image("/redDie.png", 100, 100, true, true);
-		}
-		else if (die.currentFace() == DieFace.YELLOW) {
-			this.currentDie = new Image("/yellowDie.png", 100, 100, true, true);
-		}
-		else if (die.currentFace() == DieFace.GREEN) {
-			this.currentDie = new Image("/greenDie.png", 100, 100, true, true);
-		}
-		else {
-			this.currentDie = new Image("/blueDie.png", 100, 100, true, true);
-		}
+		this.currentDie = new Image("/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
 	}
 	
 	public void updateImage() {
@@ -95,11 +84,11 @@ public class GameWindowView {
 		return this.boardScene;
 	}
 	
-	public void setGameScene() {
+	private void setGameScene() {
 		this.boardScene = new Scene(this.borderPaneBoard, 910, 682);
 	}
 	
-	public void setBorderPaneGame(){
+	private void setBorderPaneGame(){
 		BackgroundImage background = getGameBackground(new Image("/gameBackground.png", 910, 682, false, true));
 		this.borderPaneBoard = new BorderPane();
 		

@@ -1,19 +1,24 @@
 package orchard.model;
 
 public enum DieFace {
-	RED(Fruit.CHERRY),
-	YELLOW(Fruit.PEAR),
-	BLUE(Fruit.PLUM),
-	GREEN(Fruit.APPLE);
+	RED(Fruit.CHERRY, "red"),
+	YELLOW(Fruit.PEAR, "green"),
+	BLUE(Fruit.PLUM, "blue"),
+	GREEN(Fruit.APPLE, "yellow");
 
 	private Fruit associatedSymbol;
+	private String name;
 
-	DieFace(Fruit associatedSymbol) {
+	DieFace(Fruit associatedSymbol, String name) {
 		this.associatedSymbol = associatedSymbol;
+		this.name = name;
 	}
 
 	public Fruit getAssociatedSymbol() {
 		return associatedSymbol;
 	}
 	
+	public String getName() {
+		return name;
+	}
 }

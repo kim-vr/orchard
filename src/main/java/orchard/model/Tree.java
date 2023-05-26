@@ -19,7 +19,7 @@ public class Tree {
     }
     
     public void pickAFruit() {
-        this.numberOfFruits -= 1;
+        this.numberOfFruits = this.numberOfFruits - 1;
     }
     
     public boolean treeIsEmpty() {

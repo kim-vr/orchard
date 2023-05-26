@@ -32,23 +32,7 @@ public class TreeView {
 	
 	public static Image getFruitImage(Fruit fruit) {
 		Image fruitImage;
-		switch(fruit) {
-			case APPLE:
-				fruitImage = new Image("/apple.png", 30, 30, true, true);
-				break;
-		
-			case PEAR:
-				fruitImage = new Image("/pear.png", 30, 30, true, true);
-				break;
-				
-			case CHERRY:
-				fruitImage = new Image("/cherry.png", 30, 30, true, true);
-				break;
-			
-			default:
-				fruitImage = new Image("/plum.png", 30, 30, true, true);
-				break;
-		}
+		fruitImage = new Image("/" + fruit.getFruit() + ".png", 30, 30, true, true);
 		return fruitImage;
 	}
 	

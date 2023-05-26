@@ -1,6 +1,7 @@
 package orchard.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -15,11 +16,7 @@ public class Die {
 	}
 	
 	public void facesInitialisation() {
-		this.faces = new ArrayList<>(4);
-		this.faces.add(DieFace.RED);
-		this.faces.add(DieFace.YELLOW);
-		this.faces.add(DieFace.BLUE);
-		this.faces.add(DieFace.GREEN);
+		this.faces = new ArrayList<>(Arrays.asList(DieFace.values()));
 	}
 	
 	public DieFace currentFace() {

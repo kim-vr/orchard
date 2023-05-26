@@ -1,10 +1,10 @@
 package orchard.model;
 
 public enum Fruit {
-	    CHERRY("Cherry"),
-	    PEAR("Pear"),
-	    PLUM("Plum"),
-	    APPLE("Apple");
+	    CHERRY("cherry"),
+	    PEAR("pear"),
+	    PLUM("plum"),
+	    APPLE("apple");
 	    
 	    private String fruit;
 

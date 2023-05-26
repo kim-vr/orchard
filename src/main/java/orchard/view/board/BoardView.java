@@ -44,7 +44,7 @@ public class BoardView {
 			GridPane fruits = treeView.getGridPaneFruits();
 			this.gridPaneTrees.add(imageviewTree, i, 0);
 			this.gridPaneTrees.add(fruits, i, 0);
-			i++;
+			i = i + 1;
 			this.listTreeView.add(treeView);
 		}
 		this.gridPaneTrees.setAlignment(Pos.BOTTOM_CENTER);

@@ -29,7 +29,7 @@ public class Board {
     }
     
     public void treesInitialisation() {
-        this.trees = new ArrayList<>(4);
+        this.trees = new ArrayList<>();
         this.trees.add(new Tree(Fruit.CHERRY));
         this.trees.add(new Tree(Fruit.PEAR));
         this.trees.add(new Tree(Fruit.PLUM));

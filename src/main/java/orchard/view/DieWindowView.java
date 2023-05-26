@@ -40,19 +40,9 @@ public class DieWindowView {
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
-		if (die.currentFace() == DieFace.RED) {
-			this.imageCurrentFace = new Image("/redDie.png", 100, 100, true, true);
-		}
-		else if (die.currentFace() == DieFace.YELLOW) {
-			this.imageCurrentFace = new Image("/yellowDie.png", 100, 100, true, true);
-		}
-		else if (die.currentFace() == DieFace.GREEN) {
-			this.imageCurrentFace = new Image("/greenDie.png", 100, 100, true, true);
-		}
-		else {
-			this.imageCurrentFace = new Image("/blueDie.png", 100, 100, true, true);
-		}
+		this.imageCurrentFace = new Image("/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
 	}
+	
 	public void updateGridPaneImage() {
 		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
 	}
