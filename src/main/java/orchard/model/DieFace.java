@@ -2,9 +2,9 @@ package orchard.model;
 
 public enum DieFace {
 	RED(Fruit.CHERRY, "red"),
-	YELLOW(Fruit.PEAR, "green"),
+	YELLOW(Fruit.PEAR, "yellow"),
 	BLUE(Fruit.PLUM, "blue"),
-	GREEN(Fruit.APPLE, "yellow");
+	GREEN(Fruit.APPLE, "green");
 
 	private Fruit associatedSymbol;
 	private String name;
