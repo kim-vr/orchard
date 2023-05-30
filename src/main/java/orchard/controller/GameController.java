@@ -2,6 +2,7 @@ package orchard.controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import orchard.model.Board;
@@ -44,6 +45,7 @@ public class GameController {
 	public static void pickFruitGame(Board board, OrchardView gameView, Stage stage) {
 		Button btnOk = gameView.dieView().getButtonOk();
 		Button nextTurnBtn = gameView.boardView().getNextTurnBtn();
+		Label error = gameView.dieView().getError();
 		
 		btnOk.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			
@@ -58,7 +60,7 @@ public class GameController {
 				if (!treeToPickFruitOn.treeIsEmpty()) {
 					boardWindow.getBoardView().getTree(treeToPickFruitOn.getAssociatedFruit()).pickAFruit(treeToPickFruitOn);
 					treeToPickFruitOn.pickAFruit();
-				} else boardWindow.setError("Empty tree, roll the die again !");
+				} else error.setText("Empty tree, roll the die again !");
 			}
 		});
 		

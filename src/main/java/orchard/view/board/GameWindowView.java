@@ -25,7 +25,6 @@ public class GameWindowView {
 	private BorderPane bottom;
 	private Label nbRoundsLabel;
 	private BoardView boardView;
-	public Label error;
 
 	public GameWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
@@ -62,14 +61,6 @@ public class GameWindowView {
 	
 	public Label getNbRoundsLabel() {
 		return this.nbRoundsLabel;
-	}
-	
-	public Label getError() {
-		return error;
-	}
-
-	public void setError(String message) {
-		this.error.setText(message);
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
