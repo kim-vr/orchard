@@ -14,11 +14,11 @@ import orchard.view.board.GameWindowView;
 
 public class GameController {
     
-	public static void game(Board board, OrchardView gameView, Stage stage) {
-		rollDieGame(board, gameView, stage);
+	public static void game(Board board, OrchardView gameView) {
+		rollDieGame(board, gameView);
 	}
 	
-	public static void rollDieGame(Board board, OrchardView gameView, Stage stage) {
+	public static void rollDieGame(Board board, OrchardView gameView) {
 		DieView dieView = gameView.boardView().getDieView();
 		Button btnRollDie = dieView.getButtonRoll();
 		Die die = board.die();
@@ -48,7 +48,7 @@ public class GameController {
 		boardWindow.setNbRoundsLabel(board);
 	}
 	
-	public static void startGame(Board board, OrchardView gameView, Stage stage) {
+	public static void startGame(Board board, OrchardView gameView) {
 		GameWindowView boardWindow = gameView.boardView();
 		Button startBtn = boardWindow.getStartGameBtn();
 		startBtn.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
@@ -57,7 +57,7 @@ public class GameController {
 			public void handle(MouseEvent event) {
 				startBtn.setVisible(false);
 				boardWindow.replaceButtonByNextTurnButton();
-				game(board, gameView, stage);
+				game(board, gameView);
 			}
 		});
 	}

@@ -41,13 +41,8 @@ public class TreeView {
 		int row;
 		int column;
 		//to get the coordinates of the fruit we want to pick
-		if (tree.getNumberOfFruits() > 5) {
-			row = 1;
-			column = (nbFruits-5)-1;
-		} else {
-			row = 0;
-			column = nbFruits-1;
-		}
+		column = nbFruits/2;
+		row = nbFruits%2;
 		getNodeByCoordinate(row, column).setVisible(false);
 	}
 	

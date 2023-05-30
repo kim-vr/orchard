@@ -13,7 +13,7 @@ public class OrchardMain extends Application{
 		
 		Board board = new Board();
         OrchardView gameView = new OrchardView(board);
-        GameController.startGame(board, gameView, primaryStage);
+        GameController.startGame(board, gameView);
         primaryStage.setScene(gameView.boardView().getGameScene());
         primaryStage.setTitle("Orchard");
         primaryStage.show();
