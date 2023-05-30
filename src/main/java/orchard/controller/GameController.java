@@ -55,8 +55,10 @@ public class GameController {
 				boardWindow.setImageOfCurrentFace(die);
 				boardWindow.updateImage();
 				stage.setScene(boardWindow.getGameScene());
-				boardWindow.getBoardView().getTree(treeToPickFruitOn.getAssociatedFruit()).pickAFruit(treeToPickFruitOn);
-				treeToPickFruitOn.pickAFruit();
+				if (!treeToPickFruitOn.treeIsEmpty()) {
+					boardWindow.getBoardView().getTree(treeToPickFruitOn.getAssociatedFruit()).pickAFruit(treeToPickFruitOn);
+					treeToPickFruitOn.pickAFruit();
+				} else boardWindow.setError("Empty tree, roll the die again !");
 			}
 		});
 		
@@ -93,7 +95,7 @@ public class GameController {
 	
 	public static void gameOver(Board board) {
 		if(board.allTreesEmpty()) {
-			System.out.println("Jeu gagné !");
+			System.out.println("You won !");
 		}
 	}
 

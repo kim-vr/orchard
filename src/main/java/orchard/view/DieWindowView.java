@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import orchard.model.Board;
 import orchard.model.Die;
 import orchard.model.DieFace;
@@ -19,7 +20,7 @@ public class DieWindowView {
 	private Image imageCurrentFace;
 	private final Button rollTheDieBtn = new Button("Roll the die !");
 	private Scene dieScene;
-	private final Button okBtn = new Button("ok");
+	private final Button goBackBtn = new Button("Go back");
 	
 	public DieWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
@@ -32,7 +33,7 @@ public class DieWindowView {
 	}
 	
 	public Button getButtonOk() {
-		return this.okBtn;
+		return this.goBackBtn;
 	}
 	
 	public Image getImageOfCurrentFace() {
@@ -53,12 +54,14 @@ public class DieWindowView {
 		this.gridPaneDie.setBackground(new Background(background));
 		this.gridPaneDie.add(new ImageView(this.imageCurrentFace), 0, 0);
 		this.gridPaneDie.add(this.rollTheDieBtn, 0, 1);
-		this.gridPaneDie.add(this.okBtn, 0, 1);
+		this.gridPaneDie.add(this.goBackBtn, 0, 1);
 		this.gridPaneDie.setAlignment(Pos.CENTER);
 		
-		this.okBtn.setVisible(false);
+		this.goBackBtn.setVisible(false);
 		GridPane.setHalignment(this.rollTheDieBtn, HPos.CENTER);
-		GridPane.setHalignment(this.okBtn, HPos.CENTER);
+		GridPane.setHalignment(this.goBackBtn, HPos.CENTER);
+		
+		VBox vBoxDie = new VBox();
 	}
 	public GridPane getGridPaneDie() {
 		return this.gridPaneDie;

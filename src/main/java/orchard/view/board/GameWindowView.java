@@ -25,8 +25,8 @@ public class GameWindowView {
 	private BorderPane bottom;
 	private Label nbRoundsLabel;
 	private BoardView boardView;
-	
-	
+	public Label error;
+
 	public GameWindowView(Board board) {
 		setImageOfCurrentFace(board.die());
 		this.nbRoundsLabel = new Label("Number of rounds : 0");
@@ -45,7 +45,6 @@ public class GameWindowView {
 		this.bottom.setLeft(this.nbRoundsLabel);
 		this.bottom.setCenter(this.startGameBtn);
 		this.bottom.setPadding(new Insets(10 ,0 ,0 ,0));
-		
 	}
 	
 	public void replaceButtonByNextTurnButton() {
@@ -63,6 +62,14 @@ public class GameWindowView {
 	
 	public Label getNbRoundsLabel() {
 		return this.nbRoundsLabel;
+	}
+	
+	public Label getError() {
+		return error;
+	}
+
+	public void setError(String message) {
+		this.error.setText(message);
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
