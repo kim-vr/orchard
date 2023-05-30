@@ -50,7 +50,7 @@ public class DieWindowView {
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
-		Image imageFace = new Image("/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
+		Image imageFace = new Image("/dieFaces/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
 		this.imageCurrentFace = new ImageView(imageFace);
 	}
 	
