@@ -8,77 +8,44 @@ import javafx.stage.Stage;
 import orchard.model.Board;
 import orchard.model.Die;
 import orchard.model.Tree;
-import orchard.view.DieWindowView;
 import orchard.view.OrchardView;
+import orchard.view.board.DieView;
 import orchard.view.board.GameWindowView;
 
 public class GameController {
     
 	public static void game(Board board, OrchardView gameView, Stage stage) {
 		rollDieGame(board, gameView, stage);
-		pickFruitGame(board, gameView, stage);
 	}
 	
 	public static void rollDieGame(Board board, OrchardView gameView, Stage stage) {
-		
-		Button btnRollDie = gameView.dieView().getButtonRoll();
-		Button btnOk = gameView.dieView().getButtonOk();
-		
-		stage.setScene(gameView.dieView().getDieScene());
+		DieView dieView = gameView.boardView().getDieView();
+		Button btnRollDie = dieView.getButtonRoll();
+		Die die = board.die();
+		Label error = dieView.getError();
 		
 		btnRollDie.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 			
 			@Override
 			public void handle(MouseEvent event) {
-				DieWindowView dieWindow = gameView.dieView();
-				Die die = board.die();
+				Tree treeToPickFruitOn = board.getTree(die.currentFace().getAssociatedSymbol());
 				
-				btnRollDie.setVisible(false);
 				die.rollDie();
-				dieWindow.setImageOfCurrentFace(die);
-				dieWindow.updateGridPaneImage();
-				btnOk.setVisible(true);
+				dieView.setImageOfCurrentFace(die);
+				dieView.updateGridPaneImage();
+				if (!treeToPickFruitOn.treeIsEmpty()) {
+					pickFruitGame(board, gameView, treeToPickFruitOn);
+				} else error.setText("Empty tree, roll the die again !");
 			}
 		});
 	}
 	
-	public static void pickFruitGame(Board board, OrchardView gameView, Stage stage) {
-		Button btnOk = gameView.dieView().getButtonOk();
-		Button nextTurnBtn = gameView.boardView().getNextTurnBtn();
-		Label error = gameView.dieView().getError();
-		
-		btnOk.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-			
-			@Override
-			public void handle(MouseEvent event) {
-				GameWindowView boardWindow = gameView.boardView();
-				Die die = board.die();
-				Tree treeToPickFruitOn = board.getTree(die.currentFace().getAssociatedSymbol());
-				boardWindow.setImageOfCurrentFace(die);
-				boardWindow.updateImage();
-				stage.setScene(boardWindow.getGameScene());
-				if (!treeToPickFruitOn.treeIsEmpty()) {
-					boardWindow.getBoardView().getTree(treeToPickFruitOn.getAssociatedFruit()).pickAFruit(treeToPickFruitOn);
-					treeToPickFruitOn.pickAFruit();
-				} else error.setText("Empty tree, roll the die again !");
-			}
-		});
-		
-		nextTurnBtn.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-			
-			@Override
-			public void handle(MouseEvent event) {
-				Button btnRollDie = gameView.dieView().getButtonRoll();
-				DieWindowView dieWindow = gameView.dieView();
-				GameWindowView boardWindow = gameView.boardView();
-				
-				btnOk.setVisible(false);
-				btnRollDie.setVisible(true);
-				stage.setScene(dieWindow.getDieScene());
-				board.addARound();
-				boardWindow.setNbRoundsLabel(board);
-			}
-		});
+	public static void pickFruitGame(Board board, OrchardView gameView, Tree tree) {
+		GameWindowView boardWindow = gameView.boardView();
+		tree.pickAFruit();
+		boardWindow.getBoardView().getTree(tree.getAssociatedFruit()).pickAFruit(tree);
+		board.addARound();
+		boardWindow.setNbRoundsLabel(board);
 	}
 	
 	public static void startGame(Board board, OrchardView gameView, Stage stage) {

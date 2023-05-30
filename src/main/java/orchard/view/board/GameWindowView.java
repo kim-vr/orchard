@@ -1,57 +1,64 @@
 package orchard.view.board;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import orchard.model.Board;
-import orchard.model.Die;
-import orchard.model.DieFace;
 
 public class GameWindowView {
 	private final Button startGameBtn = new Button("Start the game");
 	private final Button nextTurnBtn = new Button("Next turn");
 	private Scene boardScene;
-	private Image currentDie;
 	private BorderPane borderPaneBoard;
 	private BorderPane bottom;
 	private Label nbRoundsLabel;
+	private VBox vboxCenter;
+	private DieView dieView;
 	private BoardView boardView;
 
 	public GameWindowView(Board board) {
-		setImageOfCurrentFace(board.die());
 		this.nbRoundsLabel = new Label("Number of rounds : 0");
 		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 0));
-		this.boardView = new BoardView(board);
 		borderPaneBottomCreation();
+		vboxCenterCreation(board);
 		setBorderPaneGame();
 		setGameScene();
 	}
 
 	private void borderPaneBottomCreation() {
 		this.bottom = new BorderPane();
-		ImageView imageviewCurrentFace = new ImageView(this.currentDie);
 		this.bottom.setPrefSize(910, 90);
-		this.bottom.setRight(imageviewCurrentFace);
 		this.bottom.setLeft(this.nbRoundsLabel);
 		this.bottom.setCenter(this.startGameBtn);
 		this.bottom.setPadding(new Insets(10 ,0 ,0 ,0));
 	}
 	
-	public void replaceButtonByNextTurnButton() {
-		this.bottom.setCenter(nextTurnBtn);
+	private void vboxCenterCreation(Board board) {
+		this.dieView = new DieView(board);
+		this.boardView = new BoardView(board);
+		GridPane boardPane = boardView.getGridPaneTrees();
+		GridPane diePane = this.dieView.getGridPaneDie();
+		diePane.setAlignment(Pos.TOP_LEFT);
+		diePane.setPadding(new Insets(50, 0, 0, 50));
+		boardPane.setPadding(new Insets(150, 0, 0, 0));
+		this.vboxCenter = new VBox();
+		this.vboxCenter.getChildren().addAll(diePane, boardPane);
+		
 	}
 	
-	public BoardView getBoardView() {
-		return this.boardView;
+	public void replaceButtonByNextTurnButton() {
+		this.bottom.setCenter(nextTurnBtn);
 	}
 	
 	public void setNbRoundsLabel(Board board) {
@@ -63,14 +70,14 @@ public class GameWindowView {
 		return this.nbRoundsLabel;
 	}
 	
-	public void setImageOfCurrentFace(Die die) {
-		this.currentDie = new Image("/dieFaces/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
+	public DieView getDieView() {
+		return this.dieView;
 	}
 	
-	public void updateImage() {
-		this.bottom.setRight(new ImageView(this.currentDie));
-		this.borderPaneBoard.setBottom(this.bottom);
+	public BoardView getBoardView() {
+		return this.boardView;
 	}
+	
 	
 	public static BackgroundImage getGameBackground(Image image) {
 		return new BackgroundImage(image,
@@ -92,7 +99,7 @@ public class GameWindowView {
 		
 		this.borderPaneBoard.setBottom(this.bottom);
 		this.borderPaneBoard.setBackground(new Background(background));
-		this.borderPaneBoard.setCenter(this.boardView.getGridPaneTrees()); 
+		this.borderPaneBoard.setCenter(this.vboxCenter); 
 	}
 
 	public Button getStartGameBtn() {
