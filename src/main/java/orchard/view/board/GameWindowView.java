@@ -64,7 +64,7 @@ public class GameWindowView {
 	}
 	
 	public void setImageOfCurrentFace(Die die) {
-		this.currentDie = new Image("/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
+		this.currentDie = new Image("/dieFaces/" + die.currentFace().getName() + "Die.png", 100, 100, true, true);
 	}
 	
 	public void updateImage() {

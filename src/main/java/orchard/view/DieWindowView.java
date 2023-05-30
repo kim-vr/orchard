@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import orchard.model.Board;
 import orchard.model.Die;
 import orchard.model.DieFace;

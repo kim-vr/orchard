@@ -32,7 +32,7 @@ public class TreeView {
 	
 	public static Image getFruitImage(Fruit fruit) {
 		Image fruitImage;
-		fruitImage = new Image("/" + fruit.getFruit() + ".png", 30, 30, true, true);
+		fruitImage = new Image("/fruits/" + fruit.getFruit() + ".png", 30, 30, true, true);
 		return fruitImage;
 	}
 	
