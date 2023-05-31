@@ -7,9 +7,11 @@ public class Board {
     private List<Tree> trees;
     private Die die;
     private int numberOfRounds;
+    private List<Basket> baskets;
     
     public Board() {
         treesInitialisation();
+        basketsInitialisation();
         this.trees = trees();
         this.die = new Die();
         this.numberOfRounds = 0;
@@ -18,6 +20,10 @@ public class Board {
     
     public List<Tree> trees(){
         return this.trees;
+    }
+    
+    public List<Basket> baskets(){
+    	return this.baskets;
     }
     
     public Die die() {
@@ -29,11 +35,19 @@ public class Board {
     }
     
     public void treesInitialisation() {
-        this.trees = new ArrayList<>();
+        this.trees = new ArrayList<>(4);
         this.trees.add(new Tree(Fruit.CHERRY));
         this.trees.add(new Tree(Fruit.PEAR));
         this.trees.add(new Tree(Fruit.PLUM));
         this.trees.add(new Tree(Fruit.APPLE));
+    }
+    
+    public void basketsInitialisation() {
+        this.baskets = new ArrayList<>(4);
+        this.baskets.add(new Basket(Fruit.CHERRY));
+        this.baskets.add(new Basket(Fruit.PEAR));
+        this.baskets.add(new Basket(Fruit.PLUM));
+        this.baskets.add(new Basket(Fruit.APPLE));
     }
     
     public Tree getTree(Fruit fruit) {

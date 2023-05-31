@@ -21,8 +21,4 @@ public class Basket {
     public void addAFruit() {
         this.numberOfFruits = this.numberOfFruits + 1;
     }
-    
-    public boolean basketIsEmpty() {
-        return numberOfFruits == 0;
-    }
 }

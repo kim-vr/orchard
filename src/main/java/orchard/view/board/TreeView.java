@@ -13,7 +13,6 @@ import orchard.model.Fruit;
 import orchard.model.Tree;
 
 public class TreeView {
-	private List<Image> associatedFruitList;
 	private Fruit associatedFruitType;
 	private GridPane gridPaneFruits;
 	
@@ -22,15 +21,11 @@ public class TreeView {
 		this.associatedFruitType = tree.getAssociatedFruit();
 	}
 	
-	public List<Image> getAssociatedFruitList() {
-		return associatedFruitList;
-	}
-	
 	public GridPane getGridPaneFruits() {
 		return gridPaneFruits;
 	}
 	
-	public static Image getFruitImage(Fruit fruit) {
+	public Image getFruitImage(Fruit fruit) {
 		Image fruitImage;
 		fruitImage = new Image("/fruits/" + fruit.getFruit() + ".png", 30, 30, true, true);
 		return fruitImage;
@@ -56,12 +51,10 @@ public class TreeView {
 	}
 	
 	public void putFruitsOnTree(Tree tree) {
-		this.associatedFruitList = new ArrayList<>(tree.getNumberOfFruits());
 		this.gridPaneFruits = new GridPane();
 		for (int column = 0; column< (tree.getNumberOfFruits()/2); column++) {
 			for (int line = 0; line < tree.getNumberOfFruits() / (tree.getNumberOfFruits()/2); line++) {
 				this.gridPaneFruits.add(new ImageView(getFruitImage(tree.getAssociatedFruit())), column, line);
-				this.associatedFruitList.add(getFruitImage(tree.getAssociatedFruit()));
 			}
 		}
 		this.gridPaneFruits.setAlignment(Pos.TOP_CENTER);

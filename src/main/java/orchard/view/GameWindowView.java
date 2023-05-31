@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import orchard.model.Board;
 import orchard.view.board.BoardView;
@@ -48,7 +49,7 @@ public class GameWindowView {
 	private void vboxCenterCreation(Board board) {
 		this.dieView = new DieView(board);
 		this.boardView = new BoardView(board);
-		GridPane boardPane = boardView.getGridPaneTrees();
+		StackPane boardPane = boardView.stackTreesBaskets();
 		GridPane diePane = this.dieView.getGridPaneDie();
 		diePane.setAlignment(Pos.TOP_LEFT);
 		diePane.setPadding(new Insets(50, 0, 0, 50));
