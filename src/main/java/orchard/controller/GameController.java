@@ -73,7 +73,6 @@ public class GameController {
 			@Override
 			public void handle(MouseEvent event) {
 				startBtn.setVisible(false);
-				boardWindow.replaceButtonByNextTurnButton();
 				game(primaryStage);
 			}
 		});

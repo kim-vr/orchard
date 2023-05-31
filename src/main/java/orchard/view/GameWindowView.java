@@ -20,7 +20,6 @@ import orchard.view.board.DieView;
 
 public class GameWindowView {
 	private final Button startGameBtn = new Button("Start the game");
-	private final Button nextTurnBtn = new Button("Next turn");
 	private Scene boardScene;
 	private BorderPane borderPaneBoard;
 	private BorderPane bottom;
@@ -57,10 +56,6 @@ public class GameWindowView {
 		this.vboxCenter = new VBox();
 		this.vboxCenter.getChildren().addAll(diePane, boardPane);
 		
-	}
-	
-	public void replaceButtonByNextTurnButton() {
-		this.bottom.setCenter(nextTurnBtn);
 	}
 	
 	public void setNbRoundsLabel(Board board) {
@@ -106,10 +101,6 @@ public class GameWindowView {
 
 	public Button getStartGameBtn() {
 		return this.startGameBtn;
-	}
-	
-	public Button getNextTurnBtn() {
-		return this.nextTurnBtn;
 	}
     
 }

@@ -1,6 +1,9 @@
 package orchard.view;
 
+import java.io.InputStream;
+
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,8 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import orchard.model.Board;
 
 public class EndWindowView {
@@ -27,6 +31,10 @@ public class EndWindowView {
 	}
 	
 	public void setLabelResult(boolean won) {
+		InputStream fontStream = getClass().getResourceAsStream("/WhoaSaucePersonalUseBold-mLmV5.ttf");
+		Font customFont = Font.loadFont(fontStream, 50);
+		this.result.setFont(customFont);
+		this.result.setTextFill(Color.rgb(72, 64, 56));
 		if (won) {
 			this.result.setText("You won !!!");
 		} else {
@@ -52,7 +60,9 @@ public class EndWindowView {
 		GridPane.setHalignment(this.result, HPos.CENTER);
 		GridPane.setHalignment(this.nbRounds, HPos.CENTER);
 		GridPane.setHalignment(this.leave, HPos.CENTER);
+		GridPane.setMargin(this.leave, new Insets(10, 0, 0, 0));
 		GridPane.setHalignment(this.playAgain, HPos.CENTER);
+		GridPane.setMargin(this.playAgain, new Insets(30, 0, 0, 0));
 	}
 	
 	public void setEndGameScene() {
