@@ -1,7 +1,6 @@
 package orchard.view;
 
 import orchard.model.Board;
-import orchard.view.board.GameWindowView;
 
 public class OrchardView {
 	private final GameWindowView boardView;

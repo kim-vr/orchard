@@ -16,8 +16,8 @@ public class OrchardMain extends Application{
         GameController.startGame(board, gameView);
         primaryStage.setScene(gameView.boardView().getGameScene());
         primaryStage.setTitle("Orchard");
+        primaryStage.setResizable(false);
         primaryStage.show();
-		
 	}
 
 	public static void main(String[] args) {

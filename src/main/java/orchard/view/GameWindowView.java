@@ -1,4 +1,4 @@
-package orchard.view.board;
+package orchard.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import orchard.model.Board;
+import orchard.view.board.BoardView;
+import orchard.view.board.DieView;
 
 public class GameWindowView {
 	private final Button startGameBtn = new Button("Start the game");
