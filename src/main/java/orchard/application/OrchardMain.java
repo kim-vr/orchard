@@ -10,11 +10,9 @@ public class OrchardMain extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		Board board = new Board();
-        OrchardView gameView = new OrchardView(board);
-        GameController.startGame(board, gameView);
-        primaryStage.setScene(gameView.boardView().getGameScene());
+		GameController game = new GameController();
+        game.startGame(primaryStage);
+        primaryStage.setScene(game.gameView().boardView().getGameScene());
         primaryStage.setTitle("Orchard");
         primaryStage.setResizable(false);
         primaryStage.show();
