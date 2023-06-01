@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import orchard.model.Basket;
 import orchard.model.Board;
 import orchard.model.Tree;
 import orchard.view.GameWindowView;
@@ -31,6 +32,7 @@ public class GameController {
 	public void game(Stage primaryStage) {
 		DieController dieController = new DieController(this.board, this.gameView);
 		TreeController treeController = new TreeController();
+		BasketController basketController = new BasketController();
 		DieView dieView = this.gameView.boardView().getDieView();
 		
 		if (!this.board.allTreesEmpty()) {
@@ -44,6 +46,7 @@ public class GameController {
 					dieController.rollDieControl(board, gameView);
 					
 					Tree treeToPickFruitOn = board.getTree(board.die().currentFace().getAssociatedSymbol());
+					Basket basketToAddFruitOn = board.getBasket(board.die().currentFace().getAssociatedSymbol());
 					boolean treeEmpty = treeToPickFruitOn.treeIsEmpty();
 					
 					if (treeEmpty) {
@@ -53,6 +56,8 @@ public class GameController {
 					else {
 						treeController.setTree(treeToPickFruitOn);
 						treeController.pickFruitControl(board, gameView);
+						basketController.setBasket(basketToAddFruitOn);
+						basketController.addFruitControl(board, gameView);
 					}
 					if (board.allTreesEmpty()) {
 						gameOver(primaryStage);

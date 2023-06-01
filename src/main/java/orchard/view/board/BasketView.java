@@ -2,15 +2,22 @@ package orchard.view.board;
 
 import java.util.List;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import orchard.model.Basket;
 import orchard.model.Fruit;
 
@@ -22,9 +29,10 @@ public class BasketView {
 	private VBox pileOfFruits = new VBox();
 	
 	public BasketView(Basket basket) {
-		this.basketImage = new ImageView(new Image("/basket.png", 200, 200, true, true));
+		this.basketImage = new ImageView(new Image("/basket.png", 100, 100, true, true));
 		this.nbFruitsInBasket = new Label("empty basket");
 		this.associatedFruit = basket.getAssociatedFruit();
+		//putFruitsInBasket();
 		gridPaneBasketCreation();
 	}
 	
@@ -32,11 +40,17 @@ public class BasketView {
 		this.paneBasket.add(this.pileOfFruits, 0, 0);
 		this.paneBasket.add(this.basketImage, 0, 0);
 		this.paneBasket.add(this.nbFruitsInBasket, 0, 0);
-		this.paneBasket.setPadding(new Insets(500, 0, 0, 0));
+		this.paneBasket.setPadding(new Insets(0, 100, 0, 0));
+		GridPane.setHalignment(nbFruitsInBasket, HPos.CENTER);
+		GridPane.setHalignment(basketImage, HPos.LEFT);
 	}
 	
 	public GridPane getGridPaneBasket() {
 		return this.paneBasket;
+	}
+	
+	public void setNbFruits(Basket basket) {
+		this.nbFruitsInBasket.setText(basket.getNumberOfFruits() + " fruits");
 	}
 	
 	public Image getFruitImage(Fruit fruit) {

@@ -59,6 +59,15 @@ public class Board {
 		return trees.get(1);
 	}
     
+    public Basket getBasket(Fruit fruit) {
+		for (Basket basket : this.baskets) {
+			if (basket.getAssociatedFruit() == fruit) {
+				return basket;
+			}
+		}
+		return baskets.get(1);
+	}
+    
     public void addARound() {
         this.numberOfRounds += 1;
     }

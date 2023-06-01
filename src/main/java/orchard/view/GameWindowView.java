@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -49,13 +50,15 @@ public class GameWindowView {
 	private void vboxCenterCreation(Board board) {
 		this.dieView = new DieView(board);
 		this.boardView = new BoardView(board);
-		StackPane boardPane = boardView.stackTreesBaskets();
+		//StackPane boardPane = boardView.stackTreesBaskets();
+		GridPane treesPane = boardView.getGridPaneTrees();
+		GridPane basketsPane = boardView.getGridPaneBaskets();
+		//AnchorPane anchorPaneBasketTrees = boardView.stackTreesBaskets();
 		GridPane diePane = this.dieView.getGridPaneDie();
 		diePane.setAlignment(Pos.TOP_LEFT);
 		diePane.setPadding(new Insets(50, 0, 0, 50));
-		boardPane.setPadding(new Insets(150, 0, 0, 0));
 		this.vboxCenter = new VBox();
-		this.vboxCenter.getChildren().addAll(diePane, boardPane);
+		this.vboxCenter.getChildren().addAll(diePane, treesPane, basketsPane);
 		
 	}
 	
