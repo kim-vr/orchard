@@ -50,7 +50,11 @@ public class BasketView {
 	}
 	
 	public void setNbFruits(Basket basket) {
-		this.nbFruitsInBasket.setText(basket.getNumberOfFruits() + " fruits");
+		if (basket.getNumberOfFruits() != 1) {
+			this.nbFruitsInBasket.setText(basket.getNumberOfFruits() + " " + basket.getAssociatedFruit().getFruit() + "s");
+		} else {
+			this.nbFruitsInBasket.setText(basket.getNumberOfFruits() + " " + basket.getAssociatedFruit().getFruit());
+		}
 	}
 	
 	public Image getFruitImage(Fruit fruit) {

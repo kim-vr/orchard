@@ -27,16 +27,14 @@ public class BoardView {
 	
 	private GridPane gridPaneTrees = new GridPane();
 	private GridPane gridPaneBaskets = new GridPane();
-	private AnchorPane placeTreesBaskets = new AnchorPane();
+	private StackPane stackTreesBaskets = new StackPane();
 	private List<TreeView> listTreeView;
 	private List<BasketView> listBasketView;
 
 	public BoardView(Board board) {
 		this.listTreeView = new ArrayList<>(4);
 		this.listBasketView = new ArrayList<>(4);
-		//anchorPaneCreation(board.baskets(), board.trees());
-		gridPaneTreesCreation(board.trees());
-		gridPaneBasketsCreation(board.baskets());
+		stackTreesBaskets(board.baskets(), board.trees());
 	}
 	
 	public GridPane getGridPaneTrees() {
@@ -71,29 +69,29 @@ public class BoardView {
 			BasketView basketView = new BasketView(basket);
 			this.listBasketView.add(basketView);
 			this.gridPaneBaskets.add(basketView.getGridPaneBasket(), count, 0);
-			basketView.getGridPaneBasket().setBorder(
-					  new Border(
-					    new BorderStroke(
-					      Color.PURPLE,
-					      BorderStrokeStyle.SOLID,
-					      new CornerRadii(5),
-					      new BorderWidths(10)
-					    )
-					  )
-					);
+//			basketView.getGridPaneBasket().setBorder(
+//					  new Border(
+//					    new BorderStroke(
+//					      Color.PURPLE,
+//					      BorderStrokeStyle.SOLID,
+//					      new CornerRadii(5),
+//					      new BorderWidths(10)
+//					    )
+//					  )
+//					);
 			count = count + 1;
 		}
 		this.gridPaneBaskets.setAlignment(Pos.BOTTOM_CENTER);
-		this.gridPaneBaskets.setBorder(
-				  new Border(
-				    new BorderStroke(
-				      Color.BLUE,
-				      BorderStrokeStyle.SOLID,
-				      new CornerRadii(5),
-				      new BorderWidths(10)
-				    )
-				  )
-				);
+//		this.gridPaneBaskets.setBorder(
+//				  new Border(
+//				    new BorderStroke(
+//				      Color.BLUE,
+//				      BorderStrokeStyle.SOLID,
+//				      new CornerRadii(5),
+//				      new BorderWidths(10)
+//				    )
+//				  )
+//				);
 	}
 	
 		
@@ -109,28 +107,27 @@ public class BoardView {
 			this.listTreeView.add(treeView);
 		}
 		this.gridPaneTrees.setAlignment(Pos.BOTTOM_CENTER);
-		this.gridPaneTrees.setBorder(
-				  new Border(
-				    new BorderStroke(
-				      Color.RED,
-				      BorderStrokeStyle.SOLID,
-				      new CornerRadii(5),
-				      new BorderWidths(10)
-				    )
-				  )
-				);
+		this.gridPaneTrees.setPadding(new Insets(0, 0, 50, 0));
+//		this.gridPaneTrees.setBorder(
+//				  new Border(
+//				    new BorderStroke(
+//				      Color.RED,
+//				      BorderStrokeStyle.SOLID,
+//				      new CornerRadii(5),
+//				      new BorderWidths(10)
+//				    )
+//				  )
+//				);
 	}
 	
-//	public void anchorPaneCreation(List<Basket> baskets, List<Tree> trees) {
-//		gridPaneTreesCreation(trees);
-//		gridPaneBasketsCreation(baskets);
-//		this.gridPaneBaskets.setScaleX(100);
-//		this.placeTreesBaskets.getChildren().add(this.gridPaneTrees);
-//		this.placeTreesBaskets.getChildren().add(this.gridPaneBaskets);
-//		//this.placeTreesBaskets.setAlignment(Pos.BOTTOM_CENTER);
-//		StackPane.setAlignment(gridPaneBaskets, Pos.BOTTOM_RIGHT);
-//		this.placeTreesBaskets.setMinHeight(400);
-//		this.placeTreesBaskets.setBorder(
+	public void stackTreesBaskets(List<Basket> baskets, List<Tree> trees) {
+		gridPaneTreesCreation(trees);
+		gridPaneBasketsCreation(baskets);
+		this.stackTreesBaskets.getChildren().add(this.gridPaneTrees);
+		this.stackTreesBaskets.getChildren().add(this.gridPaneBaskets);
+		this.stackTreesBaskets.setAlignment(Pos.BOTTOM_CENTER);
+		this.stackTreesBaskets.setPadding(new Insets(100, 0, 0, 0));
+//		this.stackTreesBaskets.setBorder(
 //				  new Border(
 //				    new BorderStroke(
 //				      Color.WHITE,
@@ -140,10 +137,10 @@ public class BoardView {
 //				    )
 //				  )
 //				);
-//	}
-//	
-//	public AnchorPane stackTreesBaskets() {
-//		return this.placeTreesBaskets;
-//	}
+	}
+	
+	public StackPane stackTreesBaskets() {
+		return this.stackTreesBaskets;
+	}
 
 }

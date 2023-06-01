@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import orchard.model.Board;
 
 public class EndWindowView {
+	//this.result.setFont(Font.font("Arial",FontWeight.BOLD, 20));
 	Button leave = new Button("Leave");
 	Button playAgain = new Button("Play again");
 	Label result = new Label("");
@@ -31,7 +32,7 @@ public class EndWindowView {
 	}
 	
 	public void setLabelResult(boolean won) {
-		InputStream fontStream = getClass().getResourceAsStream("/WhoaSaucePersonalUseBold-mLmV5.ttf");
+		InputStream fontStream = getClass().getResourceAsStream("/WHOASAUCEPERSONALUSE.ttf");
 		Font customFont = Font.loadFont(fontStream, 50);
 		this.result.setFont(customFont);
 		this.result.setTextFill(Color.rgb(72, 64, 56));

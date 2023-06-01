@@ -50,15 +50,14 @@ public class GameWindowView {
 	private void vboxCenterCreation(Board board) {
 		this.dieView = new DieView(board);
 		this.boardView = new BoardView(board);
-		//StackPane boardPane = boardView.stackTreesBaskets();
-		GridPane treesPane = boardView.getGridPaneTrees();
-		GridPane basketsPane = boardView.getGridPaneBaskets();
-		//AnchorPane anchorPaneBasketTrees = boardView.stackTreesBaskets();
+		StackPane boardPane = boardView.stackTreesBaskets();
+		//GridPane treesPane = boardView.getGridPaneTrees();
+		//GridPane basketsPane = boardView.getGridPaneBaskets();
 		GridPane diePane = this.dieView.getGridPaneDie();
 		diePane.setAlignment(Pos.TOP_LEFT);
 		diePane.setPadding(new Insets(50, 0, 0, 50));
 		this.vboxCenter = new VBox();
-		this.vboxCenter.getChildren().addAll(diePane, treesPane, basketsPane);
+		this.vboxCenter.getChildren().addAll(diePane, boardPane);
 		
 	}
 	
