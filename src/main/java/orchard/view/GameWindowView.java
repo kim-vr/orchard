@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -51,8 +50,6 @@ public class GameWindowView {
 		this.dieView = new DieView(board);
 		this.boardView = new BoardView(board);
 		StackPane boardPane = boardView.stackTreesBaskets();
-		//GridPane treesPane = boardView.getGridPaneTrees();
-		//GridPane basketsPane = boardView.getGridPaneBaskets();
 		GridPane diePane = this.dieView.getGridPaneDie();
 		diePane.setAlignment(Pos.TOP_LEFT);
 		diePane.setPadding(new Insets(50, 0, 0, 50));

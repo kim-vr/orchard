@@ -3,8 +3,6 @@ package orchard.application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import orchard.controller.GameController;
-import orchard.model.Board;
-import orchard.view.OrchardView;
 
 public class OrchardMain extends Application{
 	
@@ -20,7 +18,6 @@ public class OrchardMain extends Application{
 
 	public static void main(String[] args) {
 		launch(args);
-
 	}
 
 }

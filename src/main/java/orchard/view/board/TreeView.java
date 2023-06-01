@@ -1,8 +1,5 @@
 package orchard.view.board;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
