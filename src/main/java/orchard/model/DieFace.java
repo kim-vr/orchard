@@ -5,7 +5,8 @@ public enum DieFace {
 	YELLOW(Fruit.PEAR, "yellow"),
 	BLUE(Fruit.PLUM, "blue"),
 	GREEN(Fruit.APPLE, "green"),
-	CROW(null, "crow");
+	CROW(null, "crow"),
+	BASKET(null, "basket");
 
 	private Fruit associatedSymbol;
 	private String name;
