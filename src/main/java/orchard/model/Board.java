@@ -8,6 +8,7 @@ public class Board {
     private Die die;
     private int numberOfRounds;
     private List<Basket> baskets;
+    private Crow crow;
     
     public Board() {
         treesInitialisation();
@@ -15,6 +16,7 @@ public class Board {
         this.trees = trees();
         this.die = new Die();
         this.numberOfRounds = 0;
+        this.crow = new Crow();
     }
     
     
@@ -32,6 +34,10 @@ public class Board {
     
     public int numberOfRounds() {
         return numberOfRounds;
+    }
+    
+    public Crow crow() {
+        return crow;
     }
     
     public void treesInitialisation() {

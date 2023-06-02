@@ -13,6 +13,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import orchard.model.Crow;
 import orchard.model.Piece;
 
 public class CrowView {
@@ -20,9 +21,10 @@ public class CrowView {
 	private StackPane stackPaneCrow = new StackPane();
 	private GridPane gridPanePuzzle = new GridPane();
 	private final List<ImageView> listPiecesOfPuzzle = new ArrayList<>(9);
+	//private final Crow crow;
 	
 	public CrowView() {
-		this.imageEmptyCrow = new ImageView(new Image("/crow.png", 200, 200, true, true));
+		this.imageEmptyCrow = new ImageView(new Image("/crowPuzzle.png", 200, 200, true, true));
 		initializeListPiecesOfPuzzle();
 	}
 	
@@ -53,7 +55,8 @@ public class CrowView {
 	}
 	
 	public void stackPaneCrowCreation() {
-		this.stackPaneCrow.getChildren().addAll(this.imageEmptyCrow, this.gridPanePuzzle);
+		//gridPanePuzzle();
+		this.stackPaneCrow.getChildren().addAll(this.imageEmptyCrow);
 	}
 	
 	public StackPane getStackPaneCrow() {
