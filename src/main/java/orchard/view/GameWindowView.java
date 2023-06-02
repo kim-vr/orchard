@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -13,6 +14,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import orchard.model.Board;
@@ -29,11 +31,11 @@ public class GameWindowView {
 	private DieView dieView;
 	private BoardView boardView;
 
-	public GameWindowView(Board board) {
+	public GameWindowView(Board board, CrowPuzzleWindowView crowViewW) {
 		this.nbRoundsLabel = new Label("Number of rounds : 0");
 		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 30));
 		borderPaneBottomCreation();
-		vboxCenterCreation(board);
+		vboxCenterCreation(board, crowViewW);
 		setBorderPaneGame();
 		setGameScene();
 	}
@@ -43,18 +45,20 @@ public class GameWindowView {
 		this.bottom.setPrefSize(910, 90);
 		this.bottom.setLeft(this.nbRoundsLabel);
 		this.bottom.setCenter(this.startGameBtn);
-		this.bottom.setPadding(new Insets(10 ,0 ,0 ,0));
+		this.bottom.setPadding(new Insets(0 ,0 ,20 ,0));
 	}
 	
-	private void vboxCenterCreation(Board board) {
+	private void vboxCenterCreation(Board board, CrowPuzzleWindowView crowViewW) {
+		HBox hboxDieCrow = new HBox(); 
 		this.dieView = new DieView(board);
 		this.boardView = new BoardView(board);
 		StackPane boardPane = boardView.stackTreesBaskets();
 		GridPane diePane = this.dieView.getGridPaneDie();
 		diePane.setAlignment(Pos.TOP_LEFT);
+		hboxDieCrow.getChildren().addAll(diePane, crowViewW.getCrowView().getOnMainWindow());
 		diePane.setPadding(new Insets(50, 0, 0, 50));
 		this.vboxCenter = new VBox();
-		this.vboxCenter.getChildren().addAll(diePane, boardPane);
+		this.vboxCenter.getChildren().addAll(hboxDieCrow, boardPane);
 		
 	}
 	

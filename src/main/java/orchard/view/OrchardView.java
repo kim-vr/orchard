@@ -8,9 +8,9 @@ public class OrchardView {
 	private final CrowPuzzleWindowView crowView;
 	
 	public OrchardView(Board board) {
-		this.boardView = new GameWindowView(board);
-		this.endView = new EndWindowView(board);
 		this.crowView = new CrowPuzzleWindowView(board);
+		this.boardView = new GameWindowView(board, this.crowView);
+		this.endView = new EndWindowView(board);
 	}
 	
 	public GameWindowView boardView() {

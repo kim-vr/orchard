@@ -35,44 +35,44 @@ public class GameController {
 		BasketController basketController = new BasketController();
 		CrowController crowController = new CrowController();
 		DieView dieView = this.gameView.boardView().getDieView();
+		Button btnRollDie = dieView.getButtonRoll();
+		Label error = dieView.getError();
 		
-		if (!this.board.allTreesEmpty()) {
-			Button btnRollDie = dieView.getButtonRoll();
-			Label error = dieView.getError();
+		crowController.buttonsCrow(primaryStage, gameView);
 			
-			btnRollDie.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+		btnRollDie.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			
+			@Override
+			public void handle(MouseEvent event) {
+				dieController.rollDieControl(board, gameView);
 				
-				@Override
-				public void handle(MouseEvent event) {
-					dieController.rollDieControl(board, gameView);
+				if ((!board.die().currentFace().getName().equals("crow"))) {
+					Tree treeToPickFruitOn = board.getTree(board.die().currentFace().getAssociatedSymbol());
+					Basket basketToAddFruitOn = board.getBasket(board.die().currentFace().getAssociatedSymbol());
+					boolean treeEmpty = treeToPickFruitOn.treeIsEmpty();
 					
-					if (!(board.die().currentFace().getName() == "crow")) {
-						Tree treeToPickFruitOn = board.getTree(board.die().currentFace().getAssociatedSymbol());
-						Basket basketToAddFruitOn = board.getBasket(board.die().currentFace().getAssociatedSymbol());
-						boolean treeEmpty = treeToPickFruitOn.treeIsEmpty();
-						
-						if (treeEmpty) {
-							error.setVisible(treeEmpty);
-							error.setText("Empty tree !");
-						}
-						else {
-							treeController.setTree(treeToPickFruitOn);
-							treeController.pickFruitControl(board, gameView);
-							basketController.setBasket(basketToAddFruitOn);
-							basketController.addFruitControl(board, gameView);
-						}} else {
-							crowController.dieOnCrowControl(primaryStage, gameView, board);
-						}
-					
-					if (board.allTreesEmpty()) {
-						gameOver(primaryStage);
-					} else {
-						board.addARound();
-						gameView.boardView().setNbRoundsLabel(board);
+					if (treeEmpty) {
+						error.setVisible(treeEmpty);
+						error.setText("Empty tree !");
 					}
-				}	
-			});
-		}
+					else {
+						treeController.setTree(treeToPickFruitOn);
+						treeController.pickFruitControl(board, gameView);
+						basketController.setBasket(basketToAddFruitOn);
+						basketController.addFruitControl(board, gameView);
+					}} 
+				else {
+						crowController.dieOnCrowControl(primaryStage, gameView, board);
+					}
+				
+				if(board.allTreesEmpty() || board.crow().pileIsEmpty()) {
+					gameOver(primaryStage);
+				} else {
+					board.addARound();
+					gameView.boardView().setNbRoundsLabel(board);
+				}
+			}	
+		});
 	}
 	
 	public void startGame(Stage primaryStage) {
@@ -89,7 +89,11 @@ public class GameController {
 	}
 	
 	public void gameOver(Stage primaryStage) {
-		this.gameView.endView().setLabelResult(true);
+		if (this.board.allTreesEmpty()) {
+			this.gameView.endView().setLabelResult(true);
+		} else {
+			this.gameView.endView().setLabelResult(false);
+		}
 		this.gameView.endView().setLabelRounds(board);
 		primaryStage.setScene(this.gameView.endView().getEndGameScene());
 		

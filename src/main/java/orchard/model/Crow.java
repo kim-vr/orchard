@@ -26,8 +26,9 @@ public class Crow {
 			if (puzzlePiece == piece) {
 					this.puzzlePileList.remove(i);
 					this.puzzleCrowList.add(piece);
-					i++;
+					break;
 			}
+			i++;
 		}
 	}
 	
@@ -39,9 +40,10 @@ public class Crow {
 		}
 	}
 	
-	public Piece pickAPiece() {
-		Random random = new Random();
-		int pieceNumber = random.nextInt(this.puzzlePileList.size());
-		return this.puzzlePileList.get(pieceNumber);
+	
+	public boolean pileIsEmpty() {
+		if (this.puzzlePileList.isEmpty()) {
+			return true;
+		} else return false;
 	}
 }
