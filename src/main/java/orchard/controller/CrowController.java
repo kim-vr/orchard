@@ -21,39 +21,38 @@ public class CrowController {
 	private Crow crow;
 	private CrowView crowView;
 	private CrowPuzzleWindowView crowWindow;
-	private List<Image> listPiecesNotVisible;
+	private List<ImageView> listPiecesNotVisible;
+	private ImageView randomPieceImageView;
 	
 	public void dieOnCrowControl(Stage primaryStage, OrchardView gameView, Board board) {
 		this.crow = board.crow();
 		this.crowWindow = gameView.crowView();
 		this.crowView = gameView.crowView().getCrowView();
-		this.listPiecesNotVisible = crowView.getListPiecesOfPuzzle();
+		this.listPiecesNotVisible = crowView.getListImageView();
 		primaryStage.setScene(this.crowWindow.getCrowScene());
 		pickAPiece();
 	}
 	
 	public void pickAPiece() {
 		Random random = new Random();
-		Image randomPieceImage = this.listPiecesNotVisible.get(random.nextInt(this.listPiecesNotVisible.size()));
-		ImageView randomPieceImageView = this.crowWindow.getImagePicked();
-		
+		Image randomPieceImage = this.listPiecesNotVisible.get(random.nextInt(this.listPiecesNotVisible.size())).getImage();
+		int j = 0;
 		for (ImageView image : this.crowView.getListImageView()) {
 			if (image.getImage() == randomPieceImage) {
 				this.crowWindow.getImagePicked().setImage(randomPieceImage);
-				randomPieceImageView = this.crowWindow.getImagePicked();
+				this.randomPieceImageView = this.crowWindow.getImagePicked();
+				this.crowView.getListImageView().get(j).setVisible(true);
 			}
+			j++;
 		}
-		if (!randomPieceImageView.isVisible()) {
-			this.crowWindow.getImagePicked().setImage(randomPieceImage);
-			randomPieceImageView.setVisible(true);
+
 			
 			for (int i = 0; i<this.listPiecesNotVisible.size(); i++) {
-				if (randomPieceImage == listPiecesNotVisible.get(i)){
+				if (this.randomPieceImageView == listPiecesNotVisible.get(i)){
 					this.listPiecesNotVisible.remove(i);
 					this.crow.addAPiece(this.crow.getPuzzlePileList().get(i));
 				}
 			}
-		}
 	}
 	
 	public void buttonsCrow(Stage primaryStage, OrchardView gameView) {

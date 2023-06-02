@@ -28,28 +28,9 @@ public class TreeView {
 		return fruitImage;
 	}
 	
-	public void pickAFruit(Tree tree) {
-		int nbFruits = tree.getNumberOfFruits();
-		int row;
-		int column;
-		//to get the coordinates of the fruit we want to pick
-		column = nbFruits/2;
-		row = nbFruits%2;
-		getNodeByCoordinate(row, column).setVisible(false);
-	}
-	
-	public Node getNodeByCoordinate(Integer row, Integer column) {
-	    for (Node fruit : this.gridPaneFruits.getChildren()) {
-	        if(GridPane.getRowIndex(fruit).equals(row) && GridPane.getColumnIndex(fruit).equals(column)) {
-	            return fruit;
-	        }
-	    }
-	    return null;
-	}
-	
 	public void putFruitsOnTree(Tree tree) {
 		this.gridPaneFruits = new GridPane();
-		for (int column = 0; column< (tree.getNumberOfFruits()/2); column++) {
+		for (int column = 0; column < (tree.getNumberOfFruits()/2); column++) {
 			for (int line = 0; line < tree.getNumberOfFruits() / (tree.getNumberOfFruits()/2); line++) {
 				this.gridPaneFruits.add(new ImageView(getFruitImage(tree.getAssociatedFruit())), column, line);
 			}
