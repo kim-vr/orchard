@@ -41,18 +41,13 @@ public class CrowController {
 			if (image.getImage() == randomPieceImage) {
 				this.crowWindow.getImagePicked().setImage(randomPieceImage);
 				this.randomPieceImageView = this.crowWindow.getImagePicked();
-				this.crowView.getListImageView().get(j).setVisible(true);
+				break;
 			}
 			j++;
 		}
-
-			
-			for (int i = 0; i<this.listPiecesNotVisible.size(); i++) {
-				if (this.randomPieceImageView == listPiecesNotVisible.get(i)){
-					this.listPiecesNotVisible.remove(i);
-					this.crow.addAPiece(this.crow.getPuzzlePileList().get(i));
-				}
-			}
+		this.crowView.getListImageView().get(j).setVisible(true);
+		this.listPiecesNotVisible.remove(j);
+		this.crow.addAPiece(this.crow.getPuzzlePileList().get(j));
 	}
 	
 	public void buttonsCrow(Stage primaryStage, OrchardView gameView) {
