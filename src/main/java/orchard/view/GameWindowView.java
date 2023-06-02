@@ -31,7 +31,7 @@ public class GameWindowView {
 
 	public GameWindowView(Board board) {
 		this.nbRoundsLabel = new Label("Number of rounds : 0");
-		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 0));
+		this.nbRoundsLabel.setPadding(new Insets(30, 0, 0, 30));
 		borderPaneBottomCreation();
 		vboxCenterCreation(board);
 		setBorderPaneGame();

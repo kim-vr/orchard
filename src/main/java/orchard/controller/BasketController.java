@@ -18,6 +18,6 @@ public class BasketController {
 		GameWindowView boardWindow = gameView.boardView();
 		this.basketView = boardWindow.getBoardView().getBasket(basket.getAssociatedFruit());
 		this.basket.addAFruit();
-		this.basketView.setNbFruits(basket);;
+		this.basketView.setNbFruits(basket);
 	}
 }
