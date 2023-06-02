@@ -18,6 +18,7 @@ public class CrowPuzzleWindowView {
 	private CrowView crow = new CrowView();
 	
 	public CrowPuzzleWindowView() {
+		borderPaneCrowCreation();
 		setGameScene();
 	}
 	
@@ -31,6 +32,7 @@ public class CrowPuzzleWindowView {
 	public void borderPaneCrowCreation() {
 		this.borderPaneCrow.setBackground(new Background(getCrowBackground(new Image("/gameBackground.png"))));
 		this.borderPaneCrow.setCenter(this.crow.getStackPaneCrow());
+		this.borderPaneCrow.setBottom(quit);
 	}
 	
 	public Scene getCrowScene(){

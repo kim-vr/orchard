@@ -21,8 +21,8 @@ public class CrowView {
 	}
 	
 	public void initializeListPiecesOfPuzzle() {
-		for (int i = 0; i<9; i++) {
-			ImageView piece = new ImageView(new Image("/puzzlePiece" + i + ".png"));
+		for (int i = 1; i<10; i++) {
+			ImageView piece = new ImageView(new Image("/puzzlePieces/puzzlePiece" + i + ".png"));
 			piece.setVisible(false);
 			this.listPiecesOfPuzzle.add(piece);
 		}

@@ -32,7 +32,7 @@ public class EndWindowView {
 	}
 	
 	public void setLabelResult(boolean won) {
-		InputStream fontStream = getClass().getResourceAsStream("/WHOASAUCEPERSONALUSE.ttf");
+		InputStream fontStream = getClass().getResourceAsStream("/gameFont.ttf");
 		Font customFont = Font.loadFont(fontStream, 50);
 		this.result.setFont(customFont);
 		this.result.setTextFill(Color.rgb(72, 64, 56));

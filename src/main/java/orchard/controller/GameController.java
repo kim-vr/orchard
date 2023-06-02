@@ -33,6 +33,7 @@ public class GameController {
 		DieController dieController = new DieController(this.board, this.gameView);
 		TreeController treeController = new TreeController();
 		BasketController basketController = new BasketController();
+		CrowController crowController = new CrowController();
 		DieView dieView = this.gameView.boardView().getDieView();
 		
 		if (!this.board.allTreesEmpty()) {
@@ -45,20 +46,24 @@ public class GameController {
 				public void handle(MouseEvent event) {
 					dieController.rollDieControl(board, gameView);
 					
-					Tree treeToPickFruitOn = board.getTree(board.die().currentFace().getAssociatedSymbol());
-					Basket basketToAddFruitOn = board.getBasket(board.die().currentFace().getAssociatedSymbol());
-					boolean treeEmpty = treeToPickFruitOn.treeIsEmpty();
+					if (!(board.die().currentFace().getName() == "crow")) {
+						Tree treeToPickFruitOn = board.getTree(board.die().currentFace().getAssociatedSymbol());
+						Basket basketToAddFruitOn = board.getBasket(board.die().currentFace().getAssociatedSymbol());
+						boolean treeEmpty = treeToPickFruitOn.treeIsEmpty();
+						
+						if (treeEmpty) {
+							error.setVisible(treeEmpty);
+							error.setText("Empty tree !");
+						}
+						else {
+							treeController.setTree(treeToPickFruitOn);
+							treeController.pickFruitControl(board, gameView);
+							basketController.setBasket(basketToAddFruitOn);
+							basketController.addFruitControl(board, gameView);
+						}} else {
+							crowController.dieOnCrowControl(primaryStage);
+						}
 					
-					if (treeEmpty) {
-						error.setVisible(treeEmpty);
-						error.setText("Empty tree !");
-					}
-					else {
-						treeController.setTree(treeToPickFruitOn);
-						treeController.pickFruitControl(board, gameView);
-						basketController.setBasket(basketToAddFruitOn);
-						basketController.addFruitControl(board, gameView);
-					}
 					if (board.allTreesEmpty()) {
 						gameOver(primaryStage);
 					} else {
