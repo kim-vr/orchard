@@ -8,7 +8,13 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import orchard.view.board.CrowView;
 
 public class CrowPuzzleWindowView {
@@ -30,9 +36,24 @@ public class CrowPuzzleWindowView {
 	}
 	
 	public void borderPaneCrowCreation() {
-		this.borderPaneCrow.setBackground(new Background(getCrowBackground(new Image("/gameBackground.png"))));
+		BackgroundImage background = getCrowBackground(new Image("/crowBackground.png", 910, 682, false, true));
+		this.borderPaneCrow.setBackground(new Background(background));
 		this.borderPaneCrow.setCenter(this.crow.getStackPaneCrow());
+		this.crow.getStackPaneCrow().setBorder(
+				  new Border(
+				    new BorderStroke(
+				      Color.WHITE,
+				      BorderStrokeStyle.SOLID,
+				      new CornerRadii(5),
+				      new BorderWidths(10)
+				    )
+				  )
+				);
 		this.borderPaneCrow.setBottom(quit);
+	}
+	
+	public Button getQuitButton() {
+		return this.quit;
 	}
 	
 	public Scene getCrowScene(){

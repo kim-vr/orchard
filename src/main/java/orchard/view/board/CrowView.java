@@ -5,8 +5,14 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import orchard.model.Piece;
 
 public class CrowView {
@@ -34,6 +40,16 @@ public class CrowView {
 			this.gridPanePuzzle.add(this.listPiecesOfPuzzle.get(i), piece.getCoordinateY(), piece.getCoordinateX());
 			i++;
 		}
+		this.gridPanePuzzle.setBorder(
+				  new Border(
+				    new BorderStroke(
+				      Color.RED,
+				      BorderStrokeStyle.SOLID,
+				      new CornerRadii(5),
+				      new BorderWidths(10)
+				    )
+				  )
+				);
 	}
 	
 	public void stackPaneCrowCreation() {
