@@ -15,15 +15,17 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import orchard.model.Board;
 import orchard.view.board.CrowView;
 
 public class CrowPuzzleWindowView {
 	private Scene crowScene;
 	private BorderPane borderPaneCrow = new BorderPane();
 	private Button quit = new Button("Go back");
-	private CrowView crow = new CrowView();
+	private CrowView crowView;
 	
-	public CrowPuzzleWindowView() {
+	public CrowPuzzleWindowView(Board board) {
+		this.crowView = new CrowView(board);
 		borderPaneCrowCreation();
 		setGameScene();
 	}
@@ -38,8 +40,8 @@ public class CrowPuzzleWindowView {
 	public void borderPaneCrowCreation() {
 		BackgroundImage background = getCrowBackground(new Image("/crowBackground.png", 910, 682, false, true));
 		this.borderPaneCrow.setBackground(new Background(background));
-		this.borderPaneCrow.setCenter(this.crow.getStackPaneCrow());
-		this.crow.getStackPaneCrow().setBorder(
+		this.borderPaneCrow.setCenter(this.crowView.getStackPaneCrow());
+		this.crowView.getStackPaneCrow().setBorder(
 				  new Border(
 				    new BorderStroke(
 				      Color.WHITE,

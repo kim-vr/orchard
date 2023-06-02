@@ -10,7 +10,7 @@ public class OrchardView {
 	public OrchardView(Board board) {
 		this.boardView = new GameWindowView(board);
 		this.endView = new EndWindowView(board);
-		this.crowView = new CrowPuzzleWindowView();
+		this.crowView = new CrowPuzzleWindowView(board);
 	}
 	
 	public GameWindowView boardView() {
