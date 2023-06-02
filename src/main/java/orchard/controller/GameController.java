@@ -61,7 +61,7 @@ public class GameController {
 							basketController.setBasket(basketToAddFruitOn);
 							basketController.addFruitControl(board, gameView);
 						}} else {
-							crowController.dieOnCrowControl(primaryStage, gameView);
+							crowController.dieOnCrowControl(primaryStage, gameView, board);
 						}
 					
 					if (board.allTreesEmpty()) {

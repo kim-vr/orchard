@@ -2,6 +2,7 @@ package orchard.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Crow {
 	private List<Piece> puzzlePileList = new ArrayList<>(9);
@@ -36,5 +37,11 @@ public class Crow {
 				this.puzzlePileList.add(new Piece(j, i));
 			}
 		}
+	}
+	
+	public Piece pickAPiece() {
+		Random random = new Random();
+		int pieceNumber = random.nextInt(this.puzzlePileList.size());
+		return this.puzzlePileList.get(pieceNumber);
 	}
 }

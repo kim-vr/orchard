@@ -30,6 +30,10 @@ public class CrowPuzzleWindowView {
 		setGameScene();
 	}
 	
+	public CrowView getCrowView() {
+		return this.crowView;
+	}
+	
 	
 	public static BackgroundImage getCrowBackground(Image image) {
 		return new BackgroundImage(image,

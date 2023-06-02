@@ -78,6 +78,14 @@ public class CrowView {
 		return this.stackPaneCrow;
 	}
 	
+	public List<ImageView> getListPiecesOfPuzzle(){
+		return this.listPiecesOfPuzzle;
+	}
+	
+	public GridPane getGridPanePuzzle(){
+		return this.gridPanePuzzle;
+	}
+	
 	public void addAPiece(ImageView piece) {
 		int i = 0;
 		for (ImageView puzzlePiece : this.listPiecesOfPuzzle) {
