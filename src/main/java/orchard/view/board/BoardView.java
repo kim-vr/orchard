@@ -7,8 +7,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import orchard.model.Basket;
 import orchard.model.Board;
 import orchard.model.Fruit;
@@ -60,29 +66,9 @@ public class BoardView {
 			BasketView basketView = new BasketView(basket);
 			this.listBasketView.add(basketView);
 			this.gridPaneBaskets.add(basketView.getGridPaneBasket(), count, 0);
-//			basketView.getGridPaneBasket().setBorder(
-//					  new Border(
-//					    new BorderStroke(
-//					      Color.PURPLE,
-//					      BorderStrokeStyle.SOLID,
-//					      new CornerRadii(5),
-//					      new BorderWidths(10)
-//					    )
-//					  )
-//					);
 			count = count + 1;
 		}
 		this.gridPaneBaskets.setAlignment(Pos.BOTTOM_CENTER);
-//		this.gridPaneBaskets.setBorder(
-//				  new Border(
-//				    new BorderStroke(
-//				      Color.BLUE,
-//				      BorderStrokeStyle.SOLID,
-//				      new CornerRadii(5),
-//				      new BorderWidths(10)
-//				    )
-//				  )
-//				);
 	}
 	
 		
@@ -99,16 +85,6 @@ public class BoardView {
 		}
 		this.gridPaneTrees.setAlignment(Pos.BOTTOM_CENTER);
 		this.gridPaneTrees.setPadding(new Insets(0, 0, 50, 0));
-//		this.gridPaneTrees.setBorder(
-//				  new Border(
-//				    new BorderStroke(
-//				      Color.RED,
-//				      BorderStrokeStyle.SOLID,
-//				      new CornerRadii(5),
-//				      new BorderWidths(10)
-//				    )
-//				  )
-//				);
 	}
 	
 	public void stackTreesBaskets(List<Basket> baskets, List<Tree> trees) {
@@ -118,16 +94,8 @@ public class BoardView {
 		this.stackTreesBaskets.getChildren().add(this.gridPaneBaskets);
 		this.stackTreesBaskets.setAlignment(Pos.BOTTOM_CENTER);
 		this.stackTreesBaskets.setPadding(new Insets(100, 0, 0, 0));
-//		this.stackTreesBaskets.setBorder(
-//				  new Border(
-//				    new BorderStroke(
-//				      Color.WHITE,
-//				      BorderStrokeStyle.SOLID,
-//				      new CornerRadii(5),
-//				      new BorderWidths(10)
-//				    )
-//				  )
-//				);
+		this.gridPaneBaskets.setMaxHeight(100.0);
+		this.stackTreesBaskets.setMaxHeight(100.0);
 	}
 	
 	public StackPane stackTreesBaskets() {

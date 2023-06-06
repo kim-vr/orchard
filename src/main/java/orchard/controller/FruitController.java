@@ -8,12 +8,13 @@ public class FruitController implements EventHandler<MouseEvent>{
 	
 	private ImageView fruit;
 	
+	
 	public FruitController(ImageView fruit) {
 		this.fruit = fruit;
 	}
 	
 	@Override
 	public void handle(MouseEvent event) {
-		
+		this.fruit.setVisible(false);
 	}
 }
