@@ -73,6 +73,7 @@ public class CrowView {
 		int i = 0;
 		for (Piece piece : puzzlePieces) {
 			this.gridPanePuzzle.add(this.imageViewList.get(i), piece.getCoordinateX(), piece.getCoordinateY());
+			this.imageViewList.get(i).setVisible(false);
 			i++;
 		}
 		this.gridPanePuzzle.setAlignment(Pos.CENTER);
@@ -98,12 +99,4 @@ public class CrowView {
 		return this.gridPanePuzzle;
 	}
 	
-	public void addAPiece(ImageView piece) {
-		int i = 0;
-		for (ImageView puzzlePiece : this.imageViewList) {
-			if (puzzlePiece == piece) {
-				this.imageViewList.get(i).setVisible(true);
-			}
-		}
-	}
 }

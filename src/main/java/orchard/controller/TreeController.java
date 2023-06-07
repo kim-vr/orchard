@@ -1,5 +1,9 @@
 package orchard.controller;
 
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import orchard.model.Board;
 import orchard.model.Tree;
 import orchard.view.GameWindowView;
@@ -19,6 +23,34 @@ public class TreeController {
 		GameWindowView boardWindow = gameView.boardView();
 		this.treeView = boardWindow.getBoardView().getTree(tree.getAssociatedFruit());
 		this.tree.pickAFruit();
-		this.treeView.pickAFruit(tree);
+		pickAFruit(tree);
 	}
+	
+//	public void makeFruitsClickable(Tree tree) {
+//		ImageView fruit;
+//		for (int i=0; i<this.tree.getNumberOfFruits(); i++) {
+//			fruit = (ImageView) this.treeView.getGridPaneFruits().getChildren().get(i);
+//			fruit.addEventFilter(MouseEvent.MOUSE_PRESSED, new FruitController(fruit, this.tree, this.treeView));
+//		}
+//	}
+	
+	public void pickAFruit(Tree tree) {
+	int nbFruits = tree.getNumberOfFruits();
+	int row;
+	int column;
+	//to get the coordinates of the fruit we want to pick
+	column = nbFruits/2;
+	row = nbFruits%2;
+	getNodeByCoordinate(row, column).setVisible(false);
+}
+	
+	public Node getNodeByCoordinate(Integer row, Integer column) {
+    for (Node fruit : treeView.getGridPaneFruits().getChildren()) {
+        if(GridPane.getRowIndex(fruit).equals(row) && GridPane.getColumnIndex(fruit).equals(column)) {
+            return fruit;
+        }
+    }
+    return null;
+}
+	
 }
