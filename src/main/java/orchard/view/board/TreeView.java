@@ -41,7 +41,6 @@ public class TreeView {
 		for (int column = 0; column < (tree.getNumberOfFruits()/2); column++) {
 			for (int line = 0; line < tree.getNumberOfFruits() / (tree.getNumberOfFruits()/2); line++) {
 				ImageView fruit = new ImageView(getFruitImage(tree.getAssociatedFruit()));
-				fruit.addEventFilter(MouseEvent.MOUSE_PRESSED, new FruitController(fruit));
 				this.gridPaneFruits.add(fruit, column, line);
 			}
 		}
